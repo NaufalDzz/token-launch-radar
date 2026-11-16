@@ -1,0 +1,435 @@
+{
+  "retrieved": "2026-11-16",
+  "method": "Official public docs read on 2026-11-16 with read-only requests and paraphrased; nothing was signed or transacted. The build and the page never fetch these URLs; they are reference text.",
+  "protocols": {
+    "steakhouse-financial": {
+      "product_type": "curator",
+      "product": "Onchain vault curator: designs and curates noncustodial stablecoin lending vaults on Morpho, Kamino and others; it does not hold user assets.",
+      "access": "Its about page lists three routes: partner Earn products, direct deposit on a lending platform such as Morpho or Kamino, or the Steakhouse app.",
+      "sources": [
+        {
+          "url": "https://www.steakhouse.financial/about",
+          "establishes": "Curator role; users deposit from their own wallets; routes via partner Earn products, Morpho/Kamino or its app.",
+          "not_established": "Withdrawal terms, any token, points or eligibility."
+        },
+        {
+          "url": "https://www.steakhouse.financial/docs/products/stablecoin-products/vaults",
+          "establishes": "Products are onchain vaults that pool deposits and allocate them; run on Morpho and Kamino.",
+          "not_established": "Front-end, assets, chains, KYC, minimums, any token or points."
+        },
+        {
+          "url": "https://www.steakhouse.financial/docs/risk-management/monitoring/vault-setup-and-controls",
+          "establishes": "Morpho vault controls: multisig owner, 7-day timelock before new markets, a depositor veto role.",
+          "not_established": "Withdrawal terms for users; rewards."
+        },
+        {
+          "url": "https://www.steakhouse.financial/docs/products/vault-products/current",
+          "establishes": "Vault families Prime, High Yield and Turbo; Instant vs fixed-rate Term products; Turbo uses leveraged looping.",
+          "not_established": "Deposit steps, withdrawal limits, rewards."
+        },
+        {
+          "url": "https://docs.morpho.org/developers/earn/tutorials/assets-flow/",
+          "establishes": "Morpho vault withdrawals draw on idle and adapter liquidity; other funds may need a force-deallocation that can carry a curator-set penalty.",
+          "not_established": "Steakhouse-specific terms; rewards."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Steakhouse is a curator, not a standalone deposit app: its about page names partner Earn products, direct Morpho/Kamino deposits or its app. Pick one Prime Instant vault (asset, chain, address) and confirm the curator on the host page; skip Term (fixed to maturity) and Turbo (leveraged looping).",
+          "cost": "free",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: the pages read mention no Steakhouse token or points. Using a vault is a bet that curator-level usage might ever be recognised, which nothing establishes; stop here if that is not worth idle capital to you.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} of the vault's stablecoin on {chain} (gas assumed {gas} a transaction). Read its market list, caps and fee first, and Morpho's note that some withdrawals may need a force-deallocation with a penalty; one deposit, no repeat transactions.",
+          "cost": "{setup} gas + capital at vault risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "official source",
+          "text": "Each week, check the vault's allocation and any timelocked change: the docs describe a 7-day timelock on new markets and a depositor veto role. Withdraw if a market you would not accept is queued.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "sentora-curator": {
+      "product_type": "curator",
+      "product": "Risk curator of vaults on Morpho, Kamino and Euler (Direct, Smart and Protected vault types), with published asset risk reports.",
+      "access": "Deposit into a Sentora-curated vault on Morpho, Kamino or Euler; the page read names no single front-end.",
+      "sources": [
+        {
+          "url": "https://resources.vaults.sentora.com/",
+          "establishes": "Curates vaults on Morpho, Kamino and Euler; lists Direct, Smart and Protected vaults and per-asset risk reports.",
+          "not_established": "Front-end, assets, chains, KYC, minimums, any token or points."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Sentora is a curator on Morpho, Kamino and Euler. Choose one vault type (Direct, Smart or Protected) and read its strategy page and the risk report for its collateral before choosing a vault.",
+          "cost": "free",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: the page read mentions no Sentora token or points. Treat any deposit as ordinary vault use with no promised reward.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} into that single vault on {chain} (gas assumed {gas} a transaction); confirm the curator address on the host protocol's vault page first.",
+          "cost": "{setup} gas + capital at vault risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "assumption",
+          "text": "Re-read the vault's allocation monthly and after any market incident on the host protocol; exit if collateral you did not accept is added.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "gauntlet": {
+      "product_type": "curator",
+      "product": "Risk curator of 70+ Morpho vaults in three tiers (Prime, Balanced, Frontier) plus partner vaults.",
+      "access": "Suppliers deposit into and withdraw from Gauntlet-curated Morpho vaults themselves (non-custodial). Chains listed: Ethereum, Base, Arbitrum, OP Mainnet, Katana, Unichain.",
+      "sources": [
+        {
+          "url": "https://vaultbook.gauntlet.xyz/vaults/morpho-vaults",
+          "establishes": "70+ Morpho vaults; Prime, Balanced and Frontier risk tiers; chains Ethereum, Base, Arbitrum, OP Mainnet, Katana, Unichain.",
+          "not_established": "Front-end, KYC, minimums, withdrawal delays, any token or points."
+        },
+        {
+          "url": "https://vaultbook.gauntlet.xyz/vaults/morpho-vaults/morpho-vaults-overview/vault-curators",
+          "establishes": "Curators allocate supplier funds across Morpho markets, set caps and fees; suppliers deposit and withdraw themselves.",
+          "not_established": "Rewards of any kind."
+        },
+        {
+          "url": "https://docs.morpho.org/developers/earn/get-started/",
+          "establishes": "Morpho vaults are non-custodial ERC-4626 vaults; fees reduce returns; some vaults run reward campaigns claimed via Merkl.",
+          "not_established": "Gauntlet-specific rewards, amounts or eligibility."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Gauntlet curates Morpho vaults in Prime, Balanced and Frontier tiers. For a first position choose a Prime vault (blue-chip collateral per its docs) on one of its listed chains.",
+          "cost": "free",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: the pages read mention no Gauntlet token or points. A deposit earns the vault's yield; anything beyond that is speculation, not eligibility.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} into that Prime vault on {chain} (gas assumed {gas} a transaction). One deposit; do not split it into repeated transactions.",
+          "cost": "{setup} gas + capital at vault risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "assumption",
+          "text": "Monthly, compare the vault's market allocation with its tier description; move or exit if it drifts toward riskier collateral than you chose.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "veda": {
+      "product_type": "vault-infrastructure",
+      "product": "Vault infrastructure (BoringVault) that partners use to build yield products; its docs say it is not a standalone consumer app.",
+      "access": "Through partner products its docs name: Binance and Bybit Web3 wallets, Kraken DeFi Earn, ether.fi Liquid vaults, Lido Earn.",
+      "sources": [
+        {
+          "url": "https://docs.veda.tech/",
+          "establishes": "BoringVault infrastructure for partner-built vaults across EVM, SVM and MoveVM chains; names partner platforms.",
+          "not_established": "Which assets users deposit, KYC, minimums, any Veda token or points, or whether partner deposits would ever count toward one."
+        },
+        {
+          "url": "https://docs.veda.tech/architecture-and-flow-of-funds/core-components",
+          "establishes": "Deposits go through a Teller; shares can be locked for a period after deposit; withdrawals without instant liquidity queue for a maturity period and solver fill.",
+          "not_established": "Lock length or discount of any given partner vault; rewards."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Veda is infrastructure, not an app: users reach it through partner products (its docs name Binance and Bybit Web3 wallets, Kraken DeFi Earn, ether.fi Liquid, Lido Earn). Pick one partner you can already use and confirm in that partner's docs that the vault runs on Veda.",
+          "cost": "free",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Attribution gate: nothing read says deposits through partners would count toward any Veda token or points. Use the partner vault only if its own yield and risk suit you.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} into that one partner vault; follow the partner's access rules. Veda's docs say shares may be locked for a period after deposit and some withdrawals queue until filled, so check that vault's terms first. Gas on {chain} assumed {gas} a transaction.",
+          "cost": "{setup} gas + capital at vault and partner risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "assumption",
+          "text": "Check the partner vault's strategy notes monthly; note that two parties (Veda contracts and the partner) now carry risk for one position.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "upshift": {
+      "product_type": "vault-platform",
+      "product": "Platform to build and run vaults for DeFi and CeFi strategies (stablecoin, ETH, BTC); depositors receive a receipt token.",
+      "access": "Web app linked from its docs; vaults span 30+ chains. Partners may set KYC and wallet screening per vault.",
+      "sources": [
+        {
+          "url": "https://docs.upshift.finance/faq",
+          "establishes": "Vault platform with receipt tokens; partners can require KYC or screening; some vault yield includes points from underlying protocols (e.g. Ethena).",
+          "not_established": "An Upshift-issued token or points programme; minimums; withdrawal delays."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Upshift hosts many curated vaults; its FAQ says partners can require KYC or wallet screening per vault. Read the chosen vault's terms and stop if it requires checks you cannot or will not pass.",
+          "cost": "free",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: the FAQ mentions points from underlying protocols (such as Ethena) inside some vault yields, not an Upshift programme. Do not count those as Upshift eligibility.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} into one stablecoin vault on {chain} (gas assumed {gas} a transaction) and keep the receipt token in the same wallet.",
+          "cost": "{setup} gas + capital at vault risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "assumption",
+          "text": "Monthly, check the vault's reported strategy and redemption terms; redeem a small part early to learn how long withdrawals actually take.",
+          "cost": "one extra transaction",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "usdd": {
+      "product_type": "cdp-stablecoin",
+      "product": "Collateral-backed stablecoin: open a vault to mint USDD, or swap through a Peg Stability Module (PSM).",
+      "access": "Wallet-signed vault and PSM transactions; the pages read do not name collateral types or chains (DefiLlama lists Tron, Ethereum, BNB Chain).",
+      "sources": [
+        {
+          "url": "https://docs-29.gitbook.io/usdd-v2/user-guide/getting-started",
+          "establishes": "Mint via collateralised vaults, repay and withdraw; zero-fee PSM swaps against stablecoins such as USDT; liquidation and auctions for undercollateralised vaults.",
+          "not_established": "Collateral list, chains, KYC, any governance token or points."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "USDD is itself a stablecoin, so \"no token recorded\" here says nothing about a separate governance token. Read the user guide's vault, liquidation and PSM pages before choosing a route.",
+          "cost": "free",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "official source",
+          "text": "Lowest-risk route: swap a test size of about ${test} of USDT for USDD through the PSM, which the docs describe as zero-fee; on {chain} gas is assumed {gas} a transaction.",
+          "cost": "{setup} gas; capital exposed to USDD peg risk",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Optional, only if you understand liquidation: open a vault and mint a small amount at a collateral ratio far above the minimum. Minting is borrowing; skip it if you do not need the loan.",
+          "cost": "liquidation risk on collateral",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "official source",
+          "text": "Watch the USDD peg and, if you minted, your vault's ratio; the docs describe liquidation and auctions for undercollateralised vaults. Repay or add collateral early.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "polymarket-international": {
+      "product_type": "prediction-market",
+      "product": "Prediction market: YES/NO shares priced $0 to $1, each pair backed by $1 USDC.",
+      "access": "Region-gated: orders from blocked regions are rejected; some countries (its page names the US, UK and Russia among others) are close-only.",
+      "sources": [
+        {
+          "url": "https://help.polymarket.com/en/articles/13364060-what-is-polymarket",
+          "establishes": "Shares on event outcomes, priced $0 to $1, each YES/NO pair backed by $1 USDC.",
+          "not_established": "Any token, points or rewards; chain; minimums."
+        },
+        {
+          "url": "https://docs.polymarket.com/polymarket-learn/FAQ/geoblocking",
+          "establishes": "Geographic restrictions: sanctioned regions blocked; several countries close-only.",
+          "not_established": "KYC for ordinary users; minimums; withdrawal delays."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Eligibility gate: Polymarket's geoblocking page lists blocked and close-only countries. If yours is listed, stop: do not use a VPN or another person's account to get around it.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: the pages read mention no Polymarket token, points or rewards. Trading only makes sense for markets you would trade anyway.",
+          "cost": "free",
+          "time": "10 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Take one small position (assumed $50 to $100 of USDC) in a market where you hold a real view; on {chain} gas is assumed {gas} a transaction. No self-trading, wash trades or volume loops.",
+          "cost": "stake you can lose + {setup} gas",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "official source",
+          "text": "Hold to resolution or sell when your view changes; a share pays $1 only if its outcome resolves true, per the help page.",
+          "cost": "free",
+          "time": "5 minutes a week"
+        }
+      ]
+    },
+    "symbiotic": {
+      "product_type": "restaking",
+      "product": "Shared-security (restaking) vaults: stake once to back several networks; pre-deposit and actively delegated vault types.",
+      "access": "Public vaults accept deposits in Symbiotic's interface; private vaults are run by third parties (LRT providers, operators, institutions) on their own sites.",
+      "sources": [
+        {
+          "url": "https://resources.symbiotic.fi/understanding-symbiotic-vaults",
+          "establishes": "Public vaults via Symbiotic interface, private vaults via third parties; withdrawals take one to two vault epochs; points continue in pre-deposit vaults after migration.",
+          "not_established": "Supported assets, chains, KYC, a governance token."
+        },
+        {
+          "url": "https://docs.symbiotic.fi/handbooks/Handbook%20for%20Vaults",
+          "establishes": "Curator handbook: vault deployment, fees, allocations, curator fee claims.",
+          "not_established": "Anything about ordinary depositors."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Choose a public vault in Symbiotic's own interface rather than a third-party private vault, and note its epoch length: withdrawals take one to two epochs per its docs.",
+          "cost": "free",
+          "time": "20 minutes"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Rewards gate: its docs mention points in pre-deposit vaults, not a token. Read the vault's current points terms; points are not a claim on any future token.",
+          "cost": "free",
+          "time": "15 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "Deposit a test size of about ${test} of the vault's collateral asset on {chain} (gas assumed {gas} a transaction). Slashing by the networks it secures is a real loss risk.",
+          "cost": "{setup} gas + capital at slashing risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "official source",
+          "text": "Plan exits around the epoch delay; queue a withdrawal at least two epochs before you need the funds.",
+          "cost": "free",
+          "time": "10 minutes a week"
+        }
+      ]
+    },
+    "onre": {
+      "product_type": "rwa-token",
+      "product": "Tokenised reinsurance: ONyc, a yield-bearing token backed by a segregated Bermuda account; returns show up as NAV growth.",
+      "access": "Mint and redeem in the OnRe app, subject to platform verification and eligibility; ONyc transfers on Solana.",
+      "sources": [
+        {
+          "url": "https://docs.onre.finance/introduction/onre-tokenized-reinsurance-onyc",
+          "establishes": "ONyc product, NAV-based returns, minting and redemption via the OnRe app after verification and eligibility checks; Solana.",
+          "not_established": "Deposit assets, regions, minimums, redemption delays."
+        },
+        {
+          "url": "https://docs.onre.finance/introduction/getting-started",
+          "establishes": "Overview of reinsurance yield sources and a transparency dashboard.",
+          "not_established": "Access rules; the docs navigation names a points programme page that was not read."
+        }
+      ],
+      "steps": [
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "Eligibility gate: OnRe's docs say minting and redemption follow platform verification and eligibility requirements. Complete or rule out that check before moving funds.",
+          "cost": "free",
+          "time": "1-3 days (assumed review time)"
+        },
+        {
+          "kind": "gate",
+          "basis": "official source",
+          "text": "ONyc is itself a token (a yield-bearing receipt), so \"no token recorded\" does not mean nothing trades. A points page appears in its docs navigation but was not read here: read it before assuming anything.",
+          "cost": "free",
+          "time": "15 minutes"
+        },
+        {
+          "kind": "action",
+          "basis": "assumption",
+          "text": "If eligible, mint a test size of about ${test} of ONyc in the OnRe app on {chain} (gas assumed {gas} a transaction) and record the NAV at entry.",
+          "cost": "{setup} gas + capital at reinsurance-claim risk",
+          "time": "30 minutes"
+        },
+        {
+          "kind": "monitor",
+          "basis": "official source",
+          "text": "Track NAV on OnRe's transparency dashboard monthly; claims on the underwritten policies reduce NAV.",
+          "cost": "free",
+          "time": "10 minutes a month"
+        }
+      ]
+    }
+  },
+  "leads_note": "Steakhouse about/current-products, Morpho earn and Veda core-components pages were suggested as leads and re-read independently on 2026-11-16."
+}

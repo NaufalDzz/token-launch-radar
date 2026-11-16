@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar · pre-token protocols ranked by implied launch value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><circle cx="16" cy="16" r="14" class="r1"/><circle cx="16" cy="16" r="9" class="r1"/><circle cx="16" cy="16" r="4" class="r1"/><path d="M16 16 L28 9" class="sweep"/><circle cx="23" cy="11" r="2" class="blip"/></svg>
+    <div><h1>Token Radar</h1><p class="sub">Protocols whose DefiLlama record carries no token, ranked by what a launch would be worth on today's figures</p></div>
+  </div>
+  <div class="meta" id="meta"></div>
+</header>
+<section class="kpis" id="kpis" aria-label="Snapshot summary"></section>
+<nav class="tabs" id="tabs" role="tablist">
+  <button role="tab" data-tab="board">Board</button>
+  <button role="tab" data-tab="map">Radar map</button>
+  <button role="tab" data-tab="compare">Compare <span class="n" id="n-compare">0</span></button>
+  <button role="tab" data-tab="watch">My watchlist <span class="n" id="n-watch">0</span></button>
+  <button role="tab" data-tab="model">Value model</button>
+  <button role="tab" data-tab="aside">Set aside &amp; traded</button>
+</nav>
+<section class="filters" id="filters" aria-label="Filters">
+  <input id="f-q" type="search" placeholder="Search name, slug, category, chain" aria-label="Search">
+  <select id="f-cat" aria-label="Category"></select>
+  <select id="f-chain" aria-label="Chain"></select>
+  <select id="f-set" aria-label="Set">
+    <option value="">All board rows</option><option value="watchlist">House watchlist (≥ floor)</option><option value="early">Early: below the floor</option>
+    <option value="sourced">Plan from official docs</option><option value="uncertain">Uncertain or weak classification</option>
+    <option value="new">Signal: new listing</option><option value="inflow">Signal: strong inflow</option><option value="starred">Starred by me</option>
+  </select>
+  <select id="f-risk" aria-label="Risk"><option value="">Any risk</option><option value="Low">Low risk</option><option value="Medium">Medium risk</option><option value="High">High risk</option></select>
+  <select id="f-conf" aria-label="Confidence"><option value="">Any confidence</option><option value="High">High confidence</option><option value="Medium">Medium</option><option value="Low">Low</option></select>
+  <select id="f-tvl" aria-label="Minimum TVL"><option value="0">Any TVL</option><option value="10000000">TVL ≥ $10M</option><option value="50000000">TVL ≥ $50M</option><option value="250000000">TVL ≥ $250M</option><option value="1000000000">TVL ≥ $1B</option></select>
+  <select id="f-effort" aria-label="Effort"><option value="9">Any effort</option><option value="2">Effort ≤ 2/5</option><option value="3">Effort ≤ 3/5</option></select>
+  <button id="f-reset" class="ghost" type="button">Reset</button>
+  <span class="count" id="count" aria-live="polite"></span>
+</section>
+<main id="view" tabindex="-1"></main>
+<aside id="drawer" class="drawer" aria-hidden="true" aria-label="Protocol detail"></aside>
+<div id="scrim" class="scrim"></div>
+<footer class="foot" id="foot"></footer>
+<script src="zz-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
